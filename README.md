@@ -1,6 +1,6 @@
-# _{Application Name}_
+# _Currency Exchanger_
 
-#### _{Brief description of application}, {Date of current version}_
+#### _This app is going to be a currency exchange demo, November 20, 2020_
 
 #### By _**Amanda Otero**_
 
@@ -21,11 +21,16 @@ _{This is a detailed description of your application. Its purpose and usage.  Gi
 
 #### Open Locally
 1. _Go to my GitHub mandystar018_
-2. _Copy this to clone repository right here:_
+2. _Copy this to clone repository right here:https://github.com/mandystar018/Currency-Exchanger_
 3. _Open your terminal and use the command git clone and copy the hyperlink above,_
 3. _Alternately, click download zip and open the file in your computer._
-4. _Open the index.html file to view my project in a browser._
-5. _To edit my project you can open it in your favorite text editor._
+4. _Download Visual Studio Code_
+5. _Create a file named .env and type API_KEY=_
+6. _Open terminal in Visual Studios and type **npm install**._
+7. _Once step 5 is completed type **npm run build**._
+8. _Go to this website :https://www.exchangerate-api.com/ and sign up to request a key._
+9. _Once you receive get your key via email paste it in your .env file after API_KEY=._
+10. _Once all previous steps are completed type in your terminal **npm run start**._
 
 
 ## Support and contact details
@@ -41,6 +46,10 @@ _If there is any concerns or questions please email me: mandystar018@gmail.com_
 * _jQuery_
 * _Webpack_
 * _VS code_
+* _Jest_
+* _Eslint_
+* _Git_
+* _API_
 
 ### License
 
