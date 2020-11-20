@@ -4,18 +4,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import Currency from './js/currency-service.js';
 
-function calculateCurrency(number) {
-  let rate = currency1 / currency2;
+function calculateCurrency(amount, currency, response) {
+  
   
 }
 
 $('#click').click(function() {
   const amount = $('#money').val();
-  const currency1 = $('#currency1').val();
-  const currency2 = $('#currency2').val();
+  const currency = $('#currency').val();
   Currency.getCurrency()
     .then(function(response) {
-      calculateCurrency(amount);
+      calculateCurrency(amount, currency, response);
     });
 
 });
