@@ -9,7 +9,7 @@ import Currency from './js/currency-service.js';
 
 $('#click').click(function() {
   const currency1 = $('#currency1').val();
-  Currency.getCurrency(currency1)
+  Currency.getCurrency()
     .then(function(response) {
       showCurrency(response);
     });
