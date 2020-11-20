@@ -9,6 +9,8 @@ function showCurrency(response) {
   if (response.conversion_rates) {
     $('.results').text(`This is you actual currency $${response.USD} ${response.base_code}`);
     $('.results').text(`This is exchange currency`)
+  } else {
+    $('#errors').text(`There was an error`)
   }
 }
 
