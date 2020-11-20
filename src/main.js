@@ -5,13 +5,7 @@ import './css/styles.css';
 import Currency from './js/currency-service.js';
 
 
-function showCurrency(response) {
-  if (response.conversion_rates) {
-    $('#results').text(`This is exchange currency $${response.conversion_rates.USD}`);
-  } else {
-    $('#errors').text(`There was an error ${response.result}`);
-  }
-}
+
 
 $('#click').click(function() {
   const currency1 = $('#currency1').val();
@@ -19,4 +13,12 @@ $('#click').click(function() {
     .then(function(response) {
       showCurrency(response);
     });
+
+  function showCurrency(response) {
+    if (response.conversion_rates) {
+      $('#results').text(`This is exchange ${currency1} currency $${response.conversion_rates.USD}`);
+    } else {
+      $('#errors').text(`There was an error ${response.result}`);
+    }
+  }
 });
