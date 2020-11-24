@@ -4,23 +4,28 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import Currency from './js/currency-service.js';
 
-function getElement(response){
-  let key = Object.keys(response.conversion_rates).map(element =>
-    `<option value=${element}>${element}</option>`
+function getElement(response, amount){
+  let key = Object.entries(response.conversion_rates).map(([key, value])=>
+    `<option value=${value}>${key}</option>`
     ).join('');
+    console.log(key);
+  // .map(element =>
+  //   `<option value=${element}>${element}</option>`
+  //   ).join('');
   $('#currency').append(key);
-  // let total = amount.toFixed(2) * value.toFixed(2);
-  //   console.log(total);
-	}
+  if (key) {
+    
+  }
+  
+  }
 
-
-async function makeApiCall() {
+async function makeApiCall(amount) {
   const response = await Currency.getCurrency();
-  getElement(response);
+  getElement(response,amount);
 }
 
 $(document).ready(function() {
   const amount = $('#money').val(); 
   const Usercurrency = $('#currency').val();
-  makeApiCall()
+  makeApiCall(amount);
 });
