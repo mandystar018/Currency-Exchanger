@@ -1,25 +1,29 @@
-import $ from 'jquery';
+import $, { event } from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
 import Currency from './js/currency-service.js';
 
+function getResults(amount, currency) {
+  return parseInt(amount) * parseInt(currency).toFixed
+}
+
 function getElement(response, amount, userCurrency){
-  let key = Object.entries(response.conversion_rates).map(([key, value])=>
-    `<option value=${value}>${key}</option>`);
-    console.log(key);
-  $('select').append(key);
-  let total = Math.round(amount).toFixed(2) * Math.round(`${key.value}`).toFixed(2);
-  console.log(total);
+  let values = Object.values(response.conversion_rates).map((value) =>`${value}`);
+    console.log(values);
+  let keys = Object.keys(response.conversion_rates).map((key)=>`<option value=${key}>${key}</option>`);
+    console.log(keys);
+  $('select').append(keys);
   }
 
-async function makeApiCall(amount, userCurrency) {
+async function makeApiCall(userCurrency) {
   const response = await Currency.getCurrency();
   getElement(response, amount, userCurrency);
 }
 
 $(document).ready(function() {
-  const amount = $('#money').val(); 
   const userCurrency = $('#currency').val();
-  makeApiCall(amount, userCurrency);
-});
+    const amount = $('#money').val(); 
+    makeApiCall(userCurrency);
+    getResults(amount)
+  });
