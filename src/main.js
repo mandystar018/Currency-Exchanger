@@ -13,7 +13,7 @@ function getOptions(response) {
 function getElement(response, amount, userCurrency){
   if (response.conversion_rates) {
     let rate = response.conversion_rates[userCurrency];
-    let conversion = Math.round(amount * rate).toFixed(2);
+    let conversion = parseFloat(amount * rate).toFixed(2);
     $('#results').text(`Your Currency Exchange of ${userCurrency} is ${conversion}`);
   } else {
     $('#error').text(`There was an error: ${response}`);
