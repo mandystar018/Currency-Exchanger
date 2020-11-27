@@ -2,18 +2,28 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import Currency from './js/currency-service.js';
+import {Currency} from './js/currency-service.js';
+import { checkNumber } from './js/currency-service.js';
 
 function getOptions(response) {
   let keys = Object.keys(response.conversion_rates).map((key)=>`<option value=${key}>${key}</option>`);
-  console.log(keys);
   $('select').append(keys);
 }
 
 function getElement(response, amount, userCurrency){
+  try {
+    const isNumberValid = checkNumber(amount);
+    if (isNumberValid instanceof Error) {
+      console.error(isNumberValid.message);
+      return $('#nan').text("Not a valid number!");
+    }
+  } catch(error){
+    console.error(`Red alert! We have an error: ${error.message}`);
+  }
   if (response.conversion_rates) {
     let rate = response.conversion_rates[userCurrency];
     let conversion = parseFloat(amount * rate).toFixed(2);
+    $('#nan').hide();
     $('#results').text(`Your Currency Exchange of ${userCurrency} is ${conversion}`);
   } else {
     $('#error').text(`There was an error: ${response}`);
