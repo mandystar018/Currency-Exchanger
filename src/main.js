@@ -10,7 +10,7 @@ export function getOptions(response) {
     let keys = Object.keys(response.conversion_rates).map((key)=>`<option value=${key}>${key}</option>`);
     $('select').append(keys);
   } else {
-    $('#error').text(`There was an error with the select bar: ${response}`);
+    $('#load').text('There was a problem with the select bar');
   }
 }
 
@@ -46,6 +46,3 @@ $(document).ready(function() {
       });
   });
 });
-
-
-  
