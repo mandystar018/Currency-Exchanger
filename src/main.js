@@ -2,12 +2,16 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './css/styles.css';
-import {Currency} from './js/currency-service.js';
+import {Currency, loadResponse} from './js/currency-service.js';
 import { checkNumber } from './js/currency-service.js';
 
-function getOptions(response) {
-  let keys = Object.keys(response.conversion_rates).map((key)=>`<option value=${key}>${key}</option>`);
-  $('select').append(keys);
+export function getOptions(response) {
+  if(response.conversion_rates){
+    let keys = Object.keys(response.conversion_rates).map((key)=>`<option value=${key}>${key}</option>`);
+    $('select').append(keys);
+  } else {
+    $('#error').text(`There was an error with the select bar: ${response}`);
+  }
 }
 
 function getElement(response, amount, userCurrency){
@@ -31,18 +35,7 @@ function getElement(response, amount, userCurrency){
 }
 
 $(document).ready(function() {
-  let request = new XMLHttpRequest();
-  const url = `https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`;
-  request.onreadystatechange = function() {
-    if (this.readyState === 4 && this.status === 200) {
-      const response = JSON.parse(this.responseText);
-      getOptions(response);
-    } else {
-      throw Error(request.statusText);
-    }
-  };
-  request.open("GET", url, true);
-  request.send();
+  loadResponse();
   $('#click').click(function(event) {
     event.preventDefault();
     const userCurrency = $('#currency').val();
